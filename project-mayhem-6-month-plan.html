@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Project Mayhem — 6-Month Build</title>
+<!-- Home-screen / standalone app behaviour -->
+<meta name="theme-color" content="#0e1110">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mayhem">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACS0lEQVR4nO2Xy2sTURTGfxNjY9M2JqmKOq2ga5H4BjUKIijWtIWSIi24cKWr/gEuxIXuunHhzmUKNrjQ1EegBSWlPuiyCFURW02tkpeZVjvmMS5qhklnOkmQjC7yre4959zzfffcO8M9AgZwedyKkf1vkU1nhLW2MoPL41bCEf9gPchLCAZiIa0Qm5XkAOGIf1BbYcGIPBiIhepFruXIpjOCABCdDAzUm9xIxNkTkRGbthz1Jl/L4fK4FZtZsBVoCGgIsBsZr93Yi++AR50rCqSSMu/fSoyOzDM/t6yL+xL/ydDVaZQ/35TdLnDn7hE83iYAYs++cXt4VsdlWgFJyhEMxLjUP8Wbme8cPbaFW8M+xA6nLnaH2Mz+Q151fvzkVpXcDFUdwcpKgfujnwBwOGycObe9zJ/Pr267q1tUbV09YplvPRgegRFSSVkdt7c7ynwfPyzhbLGzz+emc5eTze4mdu9p5d2sREurnZ1i87p5q76EXg1pUiMGVu/Io4dxAM53i+ruxx7EK+atSoBj0wb6+jsBkOUi408XdTHPJ76yvJTn1OltHDzsJZmQeTWVqJjb9Aja2jYSjvhRFEinfvH6RZJ7oTnin3/oYmW5yHh0kZ6+DgAeRxYoFCq/a0wFSFKOywMvKyYp4cnYAhd6RfK5IhNRfZVqFlArkgmZi72TNa35P/+EN6/PVLW4mrihK9Om/n9egYaAhgCbtkuxqjEpjbPpjGCD8qdyPUUYNT/q7q1qzUrkpcqrdyCbzghWNSbaY9e1y2Bte/4bgx7foyAVfDwAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1110;
+    --bg2:#151a18;
+    --panel:#1a201e;
+    --panel2:#202724;
+    --line:#2c332f;
+    --ink:#e7eae6;
+    --muted:#9aa39c;
+    --faint:#6b746d;
+    --acid:#b9c44d;      /* desaturated acid green — Fight Club color grade */
+    --acid-dim:#7f8a3a;
+    --soap:#d98aa0;       /* dirty soap pink accent */
+    --amber:#d9a441;
+    --blood:#7a2e2a;
+    --shadow:0 18px 50px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'DM Sans',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* film grain */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
+  @supports(padding:max(0px)){
+    header.hero{padding-top:max(72px, calc(env(safe-area-inset-top) + 44px));}
+    footer{padding-bottom:max(70px, calc(env(safe-area-inset-bottom) + 50px));}
+    .wrap{padding-left:max(22px, env(safe-area-inset-left));padding-right:max(22px, env(safe-area-inset-right));}
+  }
+  .mono{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;}
+  .disp{font-family:'Oswald',sans-serif;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;
+    padding:72px 0 48px;
+    background:
+      radial-gradient(120% 80% at 80% -10%, rgba(185,196,77,.10), transparent 60%),
+      radial-gradient(90% 60% at 10% 110%, rgba(217,138,160,.08), transparent 55%),
+      linear-gradient(180deg,#0b0e0d,#0e1110);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .kicker{
+    font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;
+    letter-spacing:.42em;color:var(--acid);font-size:12px;margin-bottom:18px;
+  }
+  h1.title{
+    font-family:'Bebas Neue',sans-serif;line-height:.9;letter-spacing:.01em;
+    font-size:clamp(54px,13vw,128px);color:var(--ink);text-transform:uppercase;
+  }
+  h1.title span{color:var(--acid);display:block;}
+  .subtitle{
+    font-family:'Oswald',sans-serif;font-weight:300;color:var(--muted);
+    font-size:clamp(15px,2.4vw,19px);max-width:560px;margin-top:18px;letter-spacing:.01em;
+  }
+  .subtitle b{color:var(--ink);font-weight:500;}
+  .statline{
+    display:flex;flex-wrap:wrap;gap:0;margin-top:38px;
+    border:1px solid var(--line);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.2);
+  }
+  .stat{flex:1 1 120px;padding:16px 18px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.22em;color:var(--faint);font-family:'Oswald',sans-serif;}
+  .stat .v{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1.1;margin-top:5px;color:var(--ink);}
+  .stat .v small{font-size:14px;color:var(--muted);}
+  .arrow{color:var(--acid);}
+
+  /* ---------- SECTION ---------- */
+  section{padding:60px 0;border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;flex-wrap:wrap;}
+  .sec-num{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--acid-dim);letter-spacing:.1em;}
+  h2{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+     font-size:clamp(26px,5vw,40px);color:var(--ink);}
+  .lede{color:var(--muted);max-width:680px;margin:14px 0 34px;font-size:15.5px;}
+  .lede b{color:var(--ink);font-weight:600;}
+
+  /* ---------- MISSION / target ---------- */
+  .targetbar{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:10px;
+  }
+  .targetbar .col h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--faint);font-weight:500;}
+  .targetbar .big{font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;margin-top:6px;}
+  .targetbar .from .big{color:var(--muted);}
+  .targetbar .to .big{color:var(--acid);}
+  .targetbar .now{font-size:13px;color:var(--muted);margin-top:6px;}
+  .targetbar .mid{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--soap);}
+  @media(max-width:560px){.targetbar{grid-template-columns:1fr;text-align:center;}.targetbar .mid{transform:rotate(90deg);}}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+  .phase{
+    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acid-dim);
+    border-radius:12px;padding:20px 22px;position:relative;transition:.25s;
+  }
+  .phase:hover{border-left-color:var(--acid);background:var(--panel2);}
+  .phase .ph-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .phase .mo{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acid);line-height:1;}
+  .phase .nm{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:16px;}
+  .phase .tag{margin-left:auto;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--bg);background:var(--acid-dim);padding:4px 10px;border-radius:20px;font-weight:600;}
+  .phase .tag.cut{background:var(--soap);}
+  .phase .tag.build{background:var(--amber);}
+  .phase p{color:var(--muted);font-size:14.5px;margin-top:10px;}
+  .phase .goals{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .chip{font-size:12px;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:6px;padding:5px 10px;font-family:'Oswald',sans-serif;letter-spacing:.02em;}
+  .chip b{color:var(--acid);}
+
+  /* ---------- DAY TABS ---------- */
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .tab{
+    font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.08em;
+    font-size:13px;padding:11px 15px;border:1px solid var(--line);border-radius:8px;background:var(--panel);
+    color:var(--muted);cursor:pointer;transition:.18s;flex:1 1 auto;text-align:center;white-space:nowrap;
+  }
+  .tab .d{display:block;font-size:10px;color:var(--faint);letter-spacing:.16em;margin-bottom:3px;}
+  .tab:hover{border-color:var(--acid-dim);color:var(--ink);}
+  .tab.active{background:var(--acid);color:#10130f;border-color:var(--acid);}
+  .tab.active .d{color:#2c3318;}
+  .tab.rest.active{background:var(--soap);border-color:var(--soap);}
+
+  .day{display:none;animation:fade .35s ease;}
+  .day.show{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .day-banner{
+    display:flex;align-items:center;gap:16px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:12px;padding:18px 22px;margin-bottom:18px;flex-wrap:wrap;
+  }
+  .day-banner .focus{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;}
+  .day-banner .focus small{display:block;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--acid);text-transform:uppercase;}
+  .day-banner .meta{margin-left:auto;text-align:right;font-size:12.5px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:.03em;}
+  .day-banner .meta b{color:var(--ink);}
+
+  .warm{font-size:13px;color:var(--muted);background:rgba(185,196,77,.06);border:1px dashed var(--acid-dim);
+    border-radius:8px;padding:12px 14px;margin-bottom:16px;}
+  .warm b{color:var(--acid);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:11px;}
+
+  table.ex{width:100%;border-collapse:collapse;font-size:14px;}
+  table.ex th{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:10.5px;
+    color:var(--faint);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-weight:500;}
+  table.ex td{padding:11px 10px;border-bottom:1px solid rgba(44,51,47,.5);vertical-align:top;color:var(--ink);}
+  table.ex tr:last-child td{border-bottom:none;}
+  table.ex .nm{font-weight:600;}
+  table.ex .nm em{display:block;font-style:normal;font-weight:400;color:var(--faint);font-size:12px;margin-top:3px;}
+  table.ex .sr{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.03em;white-space:nowrap;color:var(--acid);}
+  table.ex .rpe{color:var(--muted);font-family:'Oswald',sans-serif;font-size:13px;}
+  table.ex .rest{color:var(--faint);font-size:12.5px;white-space:nowrap;}
+  .tag-cal{display:inline-block;font-size:9px;font-family:'Oswald',sans-serif;letter-spacing:.12em;
+    text-transform:uppercase;background:rgba(185,196,77,.14);color:var(--acid);padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+  .tag-wt{background:rgba(217,164,65,.14);color:var(--amber);}
+  @media(max-width:620px){
+    table.ex thead{display:none;}
+    table.ex,table.ex tbody,table.ex tr,table.ex td{display:block;width:100%;}
+    table.ex tr{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:6px 4px;background:var(--panel);}
+    table.ex td{border:none;padding:5px 14px;}
+    table.ex td.sr-cell{display:inline-block;width:auto;}
+    table.ex td.rpe-cell,table.ex td.rest-cell{display:inline-block;width:auto;padding-right:0;}
+    table.ex td.rpe-cell::before{content:"RPE ";color:var(--faint);}
+  }
+
+  .restcard{background:linear-gradient(160deg,var(--panel),#191412);border:1px solid var(--line);
+    border-radius:14px;padding:30px;text-align:center;}
+  .restcard .big{font-family:'Bebas Neue',sans-serif;font-size:60px;color:var(--soap);line-height:1;}
+  .restcard p{color:var(--muted);max-width:520px;margin:14px auto 0;font-size:14.5px;}
+
+  /* ---------- DIET ---------- */
+  .phase-toggle{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+  .pt{font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.07em;font-size:12.5px;
+    padding:10px 16px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);cursor:pointer;transition:.18s;flex:1 1 auto;text-align:center;}
+  .pt.active{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+  .dietphase{display:none;}
+  .dietphase.show{display:block;animation:fade .35s ease;}
+  .macros{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px;}
+  .macro{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;}
+  .macro.kcal{border-color:var(--acid-dim);}
+  .macro .lab{font-family:'Oswald',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--faint);}
+  .macro .num{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;margin-top:6px;}
+  .macro.kcal .num{color:var(--acid);}
+  .macro .unit{font-size:13px;color:var(--muted);}
+  @media(max-width:520px){.macros{grid-template-columns:repeat(2,1fr);}}
+
+  .meals{display:flex;flex-direction:column;gap:10px;}
+  .meal{display:flex;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;align-items:flex-start;}
+  .meal .time{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--soap);min-width:78px;letter-spacing:.05em;padding-top:2px;}
+  .meal .body h5{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:13.5px;color:var(--ink);font-weight:600;}
+  .meal .body p{color:var(--muted);font-size:13.5px;margin-top:3px;}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;}
+  @media(max-width:680px){.twocol{grid-template-columns:1fr;}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;}
+  .card h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--acid);margin-bottom:12px;}
+  .card ul{list-style:none;}
+  .card li{font-size:14px;color:var(--ink);padding:7px 0;border-bottom:1px solid rgba(44,51,47,.5);display:flex;justify-content:space-between;gap:12px;}
+  .card li:last-child{border-bottom:none;}
+  .card li span{color:var(--muted);font-size:12.5px;text-align:right;}
+  .card p.note{font-size:13.5px;color:var(--muted);}
+
+  .svc{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid rgba(44,51,47,.5);}
+  .svc:last-child{border-bottom:none;}
+  .svc .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14.5px;}
+  .svc .nm small{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:3px;font-family:'DM Sans';}
+  .svc .pill{font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--acid);border:1px solid var(--acid-dim);border-radius:20px;padding:3px 10px;white-space:nowrap;letter-spacing:.04em;}
+
+  /* ---------- PRINCIPLES ---------- */
+  .principles{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:680px){.principles{grid-template-columns:1fr;}}
+  .princ{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;border-top:3px solid var(--acid-dim);}
+  .princ h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:15px;margin-bottom:8px;}
+  .princ h4 .n{color:var(--acid);font-family:'Bebas Neue',sans-serif;margin-right:8px;}
+  .princ p{color:var(--muted);font-size:13.8px;}
+
+  .callout{background:linear-gradient(150deg,rgba(122,46,42,.18),var(--panel));border:1px solid var(--blood);
+    border-radius:12px;padding:20px 22px;margin-top:18px;}
+  .callout h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--soap);margin-bottom:8px;}
+  .callout p{font-size:14px;color:var(--ink);}
+
+  footer{padding:48px 0 70px;text-align:center;}
+  footer .rule{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,5vw,34px);color:var(--faint);letter-spacing:.04em;line-height:1.2;}
+  footer .rule b{color:var(--acid);}
+  footer .small{color:var(--faint);font-size:12px;margin-top:22px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Six-Month Build · Start Wed 03 June 2026</div>
+    <h1 class="title">Project<span>Mayhem</span></h1>
+    <p class="subtitle">A calisthenics-led recomposition toward the <b>lean, defined, V-tapered</b> Fight Club look — built for an ectomorph frame on 60–90 minutes a day. Strip the belly, build the shoulders, and carve a <b>visible six-pack</b>. Non-negotiable.</p>
+
+    <div class="statline">
+      <div class="stat"><div class="k">Start</div><div class="v">68<small>kg</small></div></div>
+      <div class="stat"><div class="k">Body Fat</div><div class="v">23<small>%</small> <span class="arrow">→</span> <span style="color:var(--acid)">9–10<small>%</small></span></div></div>
+      <div class="stat"><div class="k">Height</div><div class="v">5'8"</div></div>
+      <div class="stat"><div class="k">Days / wk</div><div class="v">6 <small>+1 rest</small></div></div>
+      <div class="stat"><div class="k">Timeline</div><div class="v">26 <small>weeks</small></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE TARGET ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>The Target</h2></div>
+    <p class="lede">Brad Pitt in Fight Club was roughly your bodyweight — around 68–70 kg — but at an estimated <b>5–8% body fat</b>. That's stage-lean and hard to live at. Your camera-ready target is <b>~9–10%</b>: that's the band where a <b>full six-pack reads — including the stubborn lower two</b>. Abs first start peeking around 12%, but the bottom of the stomach only sharpens in the single digits, so that's where we're aiming. Defined, not bulky — the look that pays.</p>
+
+    <div class="targetbar">
+      <div class="col from">
+        <h4>Today — Skinny-Fat</h4>
+        <div class="big">~15.6kg fat</div>
+        <div class="now">68kg · 23% · soft midsection, thin in clothes</div>
+      </div>
+      <div class="mid">→</div>
+      <div class="col to">
+        <h4>Month 6 — The Look</h4>
+        <div class="big">~6kg fat</div>
+        <div class="now">~63–65kg · ~9–10% · full six-pack, V-taper, denser frame</div>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:18px;font-size:14px;">You'll likely <b>gain ~4–5kg of muscle and end ~63–65kg</b>, netting only a small scale change while transforming your shape. <b>Ignore the scale</b> — track the mirror, the waist tape, and progress photos. Your abs are the last thing to surface, lower-to-upper, because the belly is exactly where you store fat — so seeing the top four by month 4 and the full six by month 6 is the normal, expected order. Don't panic mid-way.</p>
+  </div>
+</section>
+
+<!-- ============ THE ARC ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>The 6-Month Arc</h2></div>
+    <p class="lede">Three movements: <b>strip → build → reveal</b>. You start in a deficit because as a beginner you can lose fat and gain muscle at the same time. Midway you eat more to add the muscle that gives you shape. Then you cut again to peak.</p>
+
+    <div class="timeline">
+      <div class="phase">
+        <div class="ph-top"><span class="mo">M1</span><span class="nm">June — Foundation & Fat Off</span><span class="tag cut">Cut / Recomp</span></div>
+        <p>Build the habit and learn every movement with clean form before chasing intensity. Slight calorie deficit kicks fat loss immediately. Don't ego-lift — groove the patterns.</p>
+        <div class="goals">
+          <span class="chip">23% → <b>~21%</b></span><span class="chip">Lose <b>~2kg fat</b></span><span class="chip">6 sessions/wk consistent</span><span class="chip">Full push-up, assisted pull-up</span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-top"><span class="mo">M2</span><span class="nm">July — Momentum & Strength</span><span class="tag cut">Cut / Recomp</span></div>
+        <p>Progressive overload kicks in — add reps, harder calisthenics variations, more load on the weighted lifts. Love handles start visibly shrinking; upper abs begin to surface.</p>
+        <div class="goals">
+          <span class="chip">21% → <b>~18–19%</b></span><span class="chip">First unassisted pull-ups</span><span class="chip">Upper abs visible</span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-top"><span class="mo">M3</span><span class="nm">August — Shape & Width</span><span class="tag build">Recomp → Build</span></div>
+        <p>You're leaner with a base now — push volume into shoulders and back for the taper. Hold the deficit if the belly's still soft; ease toward maintenance if it's coming in fast. The V starts to read.</p>
+        <div class="goals">
+          <span class="chip">18% → <b>~15–16%</b></span><span class="chip">Weighted pull-ups & dips</span><span class="chip">Shoulder/back priority</span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-top"><span class="mo">M4</span><span class="nm">September — Fill the Frame</span><span class="tag build">Lean Build</span></div>
+        <p>Switch to maintenance / slight surplus. This is where you <b>add the muscle</b> that makes the physique — fuller delts, chest, lats, arms. Body fat holds; the frame gets denser. Skill work begins (L-sit, muscle-up progressions).</p>
+        <div class="goals">
+          <span class="chip">Hold <b>~14–15%</b></span><span class="chip">Add ~1.5kg muscle</span><span class="chip">Heavier accessory loads</span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-top"><span class="mo">M5</span><span class="nm">October — Cut & Carve</span><span class="tag cut">Cut</span></div>
+        <p>Back into a deficit to strip the fat you gained while building, revealing the new muscle. Keep lifting heavy to protect every gram of muscle — high protein is non-negotiable here. Abs come in properly.</p>
+        <div class="goals">
+          <span class="chip">15% → <b>~11%</b></span><span class="chip">Top 4 abs sharp</span><span class="chip">Add conditioning</span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-top"><span class="mo">M6</span><span class="nm">November — Peak & Polish</span><span class="tag cut">Peak</span></div>
+        <p>Final lean-out into single digits — this is the phase that brings the <b>lower two abs</b> in and completes the six-pack. Pump-focused training, dialed conditioning, deload when needed. By the end you're at the Durden line: lean, defined, photogenic — ready to shoot.</p>
+        <div class="goals">
+          <span class="chip">11% → <b>~9–10%</b></span><span class="chip">Full 6-pack</span><span class="chip">Portfolio shots</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRAINING WEEK ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>The Training Week</h2></div>
+    <p class="lede">A repeating 7-day template, anchored to your Wednesday start. Calisthenics is the engine; weights fill the gaps bodyweight can't reach (side delts for width, hamstrings, rear delts for posture). Every muscle is hit <b>2×/week</b> — ideal for a beginner. Sessions run <b>60–90 min</b>. Tap a day.</p>
+
+    <div class="tabs" id="dayTabs">
+      <div class="tab active" data-day="wed"><span class="d">Wed</span>Push</div>
+      <div class="tab" data-day="thu"><span class="d">Thu</span>Pull</div>
+      <div class="tab" data-day="fri"><span class="d">Fri</span>Legs</div>
+      <div class="tab rest" data-day="sat"><span class="d">Sat</span>Condition</div>
+      <div class="tab rest" data-day="sun"><span class="d">Sun</span>Rest</div>
+      <div class="tab" data-day="mon"><span class="d">Mon</span>Upper</div>
+      <div class="tab" data-day="tue"><span class="d">Tue</span>Lower+</div>
+    </div>
+
+    <!-- legend -->
+    <p style="font-size:12px;color:var(--faint);margin-bottom:16px;">
+      <span class="tag-cal">CALI</span> calisthenics &nbsp;·&nbsp; <span class="tag-cal tag-wt">WT</span> weights &nbsp;·&nbsp;
+      <b style="color:var(--muted)">RPE</b> = effort 1–10 (RPE 8 ≈ 2 reps left in the tank) &nbsp;·&nbsp;
+      <b style="color:var(--muted)">AMRAP</b> = as many reps as possible (clean form)
+    </p>
+
+    <!-- WED PUSH -->
+    <div class="day show" id="wed">
+      <div class="day-banner">
+        <div class="focus"><small>Wednesday</small>Push — Chest · Shoulders · Triceps</div>
+        <div class="meta"><b>6 exercises</b><br>~70 min</div>
+      </div>
+      <div class="warm"><b>Warm-up · 6 min</b> — 3 min easy bike/row · arm circles · 2×15 band pull-aparts · 2×8 scapular push-ups · 10 slow bodyweight squats.</div>
+      <table class="ex">
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Effort</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">Push-ups <span class="tag-cal">CALI</span><em>Progress: knees → full → feet-elevated → archer</em></td><td class="sr sr-cell">4 × AMRAP</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Dips <span class="tag-cal">CALI</span><em>Band-assisted → full → weighted. Lean forward for chest.</em></td><td class="sr sr-cell">3 × 6–10</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">2 min</td></tr>
+          <tr><td class="nm">Pike push-ups <span class="tag-cal">CALI</span><em>Builds toward handstand push-up — hips high, head to floor</em></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">DB lateral raises <span class="tag-cal tag-wt">WT</span><em>The width-maker. Light, strict, no swinging.</em></td><td class="sr sr-cell">3 × 12–15</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">60s</td></tr>
+          <tr><td class="nm">Incline DB press <span class="tag-cal tag-wt">WT</span><em>Upper chest — fills the area under the collarbone</em></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Triceps: bench dips or band pushdowns <span class="tag-cal">CALI</span></td><td class="sr sr-cell">3 × 12–15</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">60s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- THU PULL -->
+    <div class="day" id="thu">
+      <div class="day-banner">
+        <div class="focus"><small>Thursday</small>Pull — Back · Biceps · Core</div>
+        <div class="meta"><b>6 + core</b><br>~75 min</div>
+      </div>
+      <div class="warm"><b>Warm-up · 6 min</b> — 3 min row · band pull-aparts 2×15 · 2×5 scapular pull-ups (dead hang, shrug down) · light band rows.</div>
+      <table class="ex">
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Effort</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">Pull-ups <span class="tag-cal">CALI</span><em>The #1 V-taper builder. Band-assisted → full → weighted.</em></td><td class="sr sr-cell">4 × AMRAP</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">2 min</td></tr>
+          <tr><td class="nm">Inverted / Australian rows <span class="tag-cal">CALI</span><em>Back thickness. Elevate feet to make harder.</em></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">DB or barbell rows <span class="tag-cal tag-wt">WT</span><em>Loaded thickness — squeeze shoulder blades</em></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Face pulls <span class="tag-cal tag-wt">WT</span><em>Rear delts + fixes the desk-job hunch. Crucial for posture.</em></td><td class="sr sr-cell">3 × 15–20</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">60s</td></tr>
+          <tr><td class="nm">DB curls <span class="tag-cal tag-wt">WT</span></td><td class="sr sr-cell">3 × 10–12</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">60s</td></tr>
+          <tr><td class="nm">Chin-ups or hammer curls <span class="tag-cal">CALI</span></td><td class="sr sr-cell">2 × 8–12</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">60s</td></tr>
+          <tr><td class="nm">CORE: hanging knee raises + plank <span class="tag-cal">CALI</span><em>3×10–15 raises · 3×30–60s plank</em></td><td class="sr sr-cell">circuit</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">45s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FRI LEGS -->
+    <div class="day" id="fri">
+      <div class="day-banner">
+        <div class="focus"><small>Friday</small>Legs + Core</div>
+        <div class="meta"><b>5 + core</b><br>~70 min</div>
+      </div>
+      <div class="warm"><b>Warm-up · 6 min</b> — 3 min bike · leg swings · 15 bodyweight squats · 10 glute bridges · walking lunges ×10.</div>
+      <table class="ex">
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Effort</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">Goblet / barbell squats <span class="tag-cal tag-wt">WT</span><em>Progress bodyweight → goblet → toward pistol squats</em></td><td class="sr sr-cell">4 × 10–15</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Romanian deadlifts <span class="tag-cal tag-wt">WT</span><em>Hamstrings & glutes — hinge, flat back, feel the stretch</em></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Walking lunges or split squats <span class="tag-cal">CALI</span></td><td class="sr sr-cell">3 × 10–12 / leg</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">75s</td></tr>
+          <tr><td class="nm">Nordic curl progression / leg curl <span class="tag-cal">CALI</span></td><td class="sr sr-cell">3 × 6–10</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">75s</td></tr>
+          <tr><td class="nm">Calf raises <span class="tag-cal">CALI</span></td><td class="sr sr-cell">3 × 15–20</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">45s</td></tr>
+          <tr><td class="nm">CORE CIRCUIT <span class="tag-cal">CALI</span><em>Hanging leg raise 3×12 · weighted crunch 3×15 · side plank 3×30s/side · Russian twist 3×20</em></td><td class="sr sr-cell">3 rounds</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">45s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SAT CONDITION -->
+    <div class="day" id="sat">
+      <div class="day-banner" style="border-color:var(--soap);">
+        <div class="focus"><small>Saturday</small>Conditioning + Core <span style="font-size:12px;color:var(--soap)">· light day</span></div>
+        <div class="meta"><b>~45 min</b><br>fat-burn + recover</div>
+      </div>
+      <div class="warm" style="border-color:var(--soap);"><b style="color:var(--soap)">Why</b> — Conditioning accelerates fat loss without eating into lifting recovery, and keeps your heart healthy. Keep it genuinely easy-to-moderate; this is not another hard lifting day.</div>
+      <table class="ex">
+        <thead><tr><th>Block</th><th>Work</th><th>Effort</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">HIIT intervals<em>Bike, rower, or incline treadmill. 30s hard / 90s easy.</em></td><td class="sr sr-cell">8–10 rounds</td><td class="rpe rpe-cell">hard/easy</td><td class="rest rest-cell">~22 min</td></tr>
+          <tr><td class="nm">Ab finisher<em>Ab-wheel or plank circuit · hollow holds · leg raises</em></td><td class="sr sr-cell">10 min</td><td class="rpe rpe-cell">7</td><td class="rest rest-cell">10 min</td></tr>
+          <tr><td class="nm">Mobility & stretch<em>Hips, shoulders, t-spine, hamstrings — wind down</em></td><td class="sr sr-cell">—</td><td class="rpe rpe-cell">easy</td><td class="rest rest-cell">10 min</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px;color:var(--faint);margin-top:14px;">Swap option: if a session's tiring you out, replace HIIT with a brisk 45–60 min incline walk (LISS). Equally good for fat loss, easier to recover from.</p>
+    </div>
+
+    <!-- SUN REST -->
+    <div class="day" id="sun">
+      <div class="restcard">
+        <div class="big">REST</div>
+        <p><b style="color:var(--ink)">Sunday is sacred.</b> Muscle is built when you recover, not when you train. Full rest day: a relaxed walk if you like, mobility/stretching, and <b style="color:var(--ink)">meal-prep for the week</b>. Aim for your best sleep of the week tonight — 7–9 hours. Poor sleep raises cortisol, which is directly linked to holding belly fat, so this day genuinely moves the needle on your midsection.</p>
+      </div>
+    </div>
+
+    <!-- MON UPPER -->
+    <div class="day" id="mon">
+      <div class="day-banner">
+        <div class="focus"><small>Monday</small>Upper — Push/Pull + Skill</div>
+        <div class="meta"><b>6 + skill</b><br>~80 min</div>
+      </div>
+      <div class="warm"><b>Warm-up · 6 min</b> — row · band pull-aparts · scapular pull-ups · light pressing. This is your width-priority day (M3 onward).</div>
+      <table class="ex">
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Effort</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">Wide-grip pull-ups <span class="tag-cal">CALI</span><em>Wider grip biases the lats — maximum width</em></td><td class="sr sr-cell">4 × AMRAP</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">2 min</td></tr>
+          <tr><td class="nm">Dips <span class="tag-cal">CALI</span></td><td class="sr sr-cell">4 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Pseudo-planche push-ups or incline DB press <span class="tag-cal tag-wt">WT</span></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">DB shoulder press <span class="tag-cal tag-wt">WT</span><em>Overhead pressing for capped, round delts</em></td><td class="sr sr-cell">3 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Lateral raises <span class="tag-cal tag-wt">WT</span></td><td class="sr sr-cell">3 × 15</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">60s</td></tr>
+          <tr><td class="nm">Superset: curls + triceps <span class="tag-cal tag-wt">WT</span></td><td class="sr sr-cell">3 × 12</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">60s</td></tr>
+          <tr><td class="nm">SKILL (M4+, optional) <span class="tag-cal">CALI</span><em>L-sit holds · muscle-up progressions · handstand practice</em></td><td class="sr sr-cell">10 min</td><td class="rpe rpe-cell">play</td><td class="rest rest-cell">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TUE LOWER+ -->
+    <div class="day" id="tue">
+      <div class="day-banner">
+        <div class="focus"><small>Tuesday</small>Lower + Conditioning + Core</div>
+        <div class="meta"><b>5 + core</b><br>~75 min</div>
+      </div>
+      <div class="warm"><b>Warm-up · 6 min</b> — bike · leg swings · bodyweight squats · glute bridges. Different leg emphasis than Friday (more single-leg & glute).</div>
+      <table class="ex">
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Effort</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">Squat variation <span class="tag-cal tag-wt">WT</span><em>Loaded squat or pistol-squat progression</em></td><td class="sr sr-cell">4 × 8–12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">90s</td></tr>
+          <tr><td class="nm">Bulgarian split squats <span class="tag-cal">CALI</span><em>Brutal, brilliant for balance & glutes</em></td><td class="sr sr-cell">3 × 10 / leg</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">75s</td></tr>
+          <tr><td class="nm">Hip thrusts / glute bridges <span class="tag-cal tag-wt">WT</span></td><td class="sr sr-cell">3 × 12</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">75s</td></tr>
+          <tr><td class="nm">RDL or leg curl <span class="tag-cal tag-wt">WT</span></td><td class="sr sr-cell">3 × 10</td><td class="rpe rpe-cell">8</td><td class="rest rest-cell">75s</td></tr>
+          <tr><td class="nm">Calf raises <span class="tag-cal">CALI</span></td><td class="sr sr-cell">3 × 15–20</td><td class="rpe rpe-cell">9</td><td class="rest rest-cell">45s</td></tr>
+          <tr><td class="nm">Conditioning + core<em>12–15 min steady cardio, then 8 min ab circuit</em></td><td class="sr sr-cell">~22 min</td><td class="rpe rpe-cell">6–7</td><td class="rest rest-cell">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>How to progress — the one rule that matters</h4>
+      <p><b>Progressive overload.</b> Each week, beat last week by a little: one more rep, a harder variation, slightly more weight, or a touch less rest. When a calisthenics exercise gets easy (hitting the top of the rep range across all sets), advance to the harder variation. When a weighted lift's top range feels like RPE 7, add load. Log every session below — what gets measured gets built. This single habit is what separates a transformation from a year of treading water.</p>
+    </div>
+
+    <div class="callout" style="background:linear-gradient(150deg,rgba(185,196,77,.12),var(--panel));border-color:var(--acid-dim);">
+      <h4 style="color:var(--acid);">The abs protocol — your non-negotiable</h4>
+      <p>A six-pack is two things stacked: <b>thick ab muscle</b> + <b>low enough body fat to see it</b>. Your plan already trains core 4×/week (Thu, Fri, Sat, Tue) — the rule is to <b>train abs like any other muscle: with added resistance and progression</b>, not endless light crunches. Anchor every core block with one <b>weighted, low-rep movement</b> (cable/plate crunch or weighted hanging leg raise, 3×8–12, RPE 9) to build size, then finish with bodyweight volume (hollow holds, planks, leg raises). Hit the <b>lower abs hard</b> (hanging leg/knee raises, reverse crunches) — that's the region that shows last and matters most for the full six. But understand the order of operations: <b>no amount of ab work reveals a six-pack on its own — the deficit does that.</b> Build the bricks now; the diet sandblasts off what's covering them. By ~9–10% they're all visible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIET ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>The Fuel</h2></div>
+    <p class="lede">Abs are made in the kitchen — <b>~80% of your result is diet</b>, and your six-pack lives or dies here. Your maintenance is roughly <b>2,550 kcal/day</b> (estimated for age 24, your stats, training 6×/wk). We move calories across three phases while keeping protein high to protect muscle. Tap a phase.</p>
+
+    <div class="phase-toggle" id="dietToggle">
+      <div class="pt active" data-phase="cut">Months 1–3 · Cut</div>
+      <div class="pt" data-phase="build">Month 4 · Build</div>
+      <div class="pt" data-phase="peak">Months 5–6 · Peak Cut</div>
+    </div>
+
+    <!-- CUT -->
+    <div class="dietphase show" id="cut">
+      <div class="macros">
+        <div class="macro kcal"><div class="lab">Calories</div><div class="num">2,150</div><div class="unit">~400 deficit</div></div>
+        <div class="macro"><div class="lab">Protein</div><div class="num">160</div><div class="unit">grams</div></div>
+        <div class="macro"><div class="lab">Carbs</div><div class="num">210</div><div class="unit">grams</div></div>
+        <div class="macro"><div class="lab">Fat</div><div class="num">63</div><div class="unit">grams</div></div>
+      </div>
+      <div class="meals">
+        <div class="meal"><div class="time">07:30</div><div class="body"><h5>Breakfast</h5><p>3 whole eggs + 3 egg whites · 50g oats with berries · black coffee. (~P38 · C45 · F18)</p></div></div>
+        <div class="meal"><div class="time">12:30</div><div class="body"><h5>Lunch</h5><p>180g grilled chicken/fish · 150g rice or quinoa · big plate of greens + olive oil. (~P45 · C60 · F14)</p></div></div>
+        <div class="meal"><div class="time">Pre-WO</div><div class="body"><h5>Pre-workout snack</h5><p>Greek yogurt + a banana, or an apple + 15g whey. Quick carbs to train hard. (~P25 · C35 · F4)</p></div></div>
+        <div class="meal"><div class="time">Post-WO</div><div class="body"><h5>Dinner</h5><p>180g lean protein (chicken/lean beef/tofu) · roasted veg · small sweet potato. (~P45 · C50 · F18)</p></div></div>
+        <div class="meal"><div class="time">21:00</div><div class="body"><h5>Optional casein snack</h5><p>Low-fat cottage cheese or a slow-digesting protein if hungry. Keeps you full overnight.</p></div></div>
+      </div>
+    </div>
+
+    <!-- BUILD -->
+    <div class="dietphase" id="build">
+      <div class="macros">
+        <div class="macro kcal"><div class="lab">Calories</div><div class="num">2,600</div><div class="unit">slight surplus</div></div>
+        <div class="macro"><div class="lab">Protein</div><div class="num">165</div><div class="unit">grams</div></div>
+        <div class="macro"><div class="lab">Carbs</div><div class="num">295</div><div class="unit">grams</div></div>
+        <div class="macro"><div class="lab">Fat</div><div class="num">78</div><div class="unit">grams</div></div>
+      </div>
+      <div class="meals">
+        <div class="meal"><div class="time">Build</div><div class="body"><h5>Same meal structure, bigger portions</h5><p>Add ~80g rice/oats across the day and a second post-workout carb source. The extra fuel + heavy training is what physically adds the muscle that gives you the V-taper and fuller shoulders. Don't fear the small scale increase — most of it is muscle and water in the right places.</p></div></div>
+        <div class="meal"><div class="time">Tip</div><div class="body"><h5>Carbs around training</h5><p>Push the bulk of your extra carbs into the pre- and post-workout meals — better performance, better recovery, less fat gain.</p></div></div>
+      </div>
+    </div>
+
+    <!-- PEAK -->
+    <div class="dietphase" id="peak">
+      <div class="macros">
+        <div class="macro kcal"><div class="lab">Calories</div><div class="num">2,000</div><div class="unit">deficit</div></div>
+        <div class="macro"><div class="lab">Protein</div><div class="num">165</div><div class="unit">grams</div></div>
+        <div class="macro"><div class="lab">Carbs</div><div class="num">180</div><div class="unit">grams</div></div>
+        <div class="macro"><div class="lab">Fat</div><div class="num">60</div><div class="unit">grams</div></div>
+      </div>
+      <div class="meals">
+        <div class="meal"><div class="time">Peak</div><div class="body"><h5>Protein stays high, carbs come down</h5><p>This phase reveals everything you built. Keep protein at the top to protect muscle in the deficit, fill the plate with high-volume veg and lean protein so you stay full on fewer calories. Keep training heavy — that signal is what tells your body to keep the muscle and burn fat instead.</p></div></div>
+        <div class="meal"><div class="time">Shoot wk</div><div class="body"><h5>Final week — keep it simple</h5><p>No crash diets or dehydration tricks. Hold your routine, keep water normal, get sleep. A lean, well-fed, well-rested look photographs far better than a depleted one.</p></div></div>
+      </div>
+    </div>
+
+    <div class="twocol">
+      <div class="card">
+        <h4>Eat these — your building blocks</h4>
+        <ul>
+          <li>Lean protein <span>chicken, white fish, lean beef, eggs, Greek yogurt, tofu, whey</span></li>
+          <li>Smart carbs <span>oats, rice, quinoa, sweet potato, fruit, legumes</span></li>
+          <li>Good fats <span>olive oil, avocado, nuts, oily fish</span></li>
+          <li>Volume veg <span>leafy greens, peppers, broccoli — eat freely</span></li>
+          <li>Water <span>3L+ daily · fat loss & fullness</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Go easy on these</h4>
+        <ul>
+          <li>Alcohol <span>stalls fat loss + spikes appetite</span></li>
+          <li>Liquid calories <span>juices, lattes, soft drinks</span></li>
+          <li>Refined carbs & sugar <span>keep occasional, not daily</span></li>
+          <li>Fried / takeaway <span>hidden calories wreck a deficit</span></li>
+          <li>Late heavy meals <span>hurt sleep = hurt your midsection</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="twocol">
+      <div class="card">
+        <h4>Supplements — only the proven few</h4>
+        <ul>
+          <li>Whey protein <span>convenient way to hit 155–160g</span></li>
+          <li>Creatine monohydrate <span>5g daily · most-studied, just works</span></li>
+          <li>Caffeine <span>pre-workout, train harder</span></li>
+          <li>Vitamin D3 + Omega-3 <span>general health baseline</span></li>
+          <li>Electrolytes <span>Dubai heat + you sweat a lot training</span></li>
+        </ul>
+        <p class="note" style="margin-top:10px;">Skip fat-burners and exotic powders — they don't move the needle. These five cover it.</p>
+      </div>
+      <div class="card">
+        <h4>Dubai meal-plan services <span style="font-size:10px;color:var(--faint)">— hand them your macros</span></h4>
+        <div class="svc"><div class="nm">Right Bite<small>Dietitian-founded, macro-balanced, High-Protein plan with calorie tiers</small></div><div class="pill">High Protein</div></div>
+        <div class="svc"><div class="nm">WellFed — Athlete Plan<small>3 meals + 2 snacks tier lands ~1,800–2,200 kcal</small></div><div class="pill">~2,000</div></div>
+        <div class="svc"><div class="nm">Calo<small>Customise your own macros per meal, snack included</small></div><div class="pill">Custom</div></div>
+        <div class="svc"><div class="nm">FITT / Fitlab / Delicut<small>Build-your-own, macros printed per pack, flexible pausing</small></div><div class="pill">Flexible</div></div>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:18px;font-size:13.5px;">Pick any service that lets you set a <b>calorie tier near your phase target</b> and a <b>high-protein option (~150g+)</b>. Give them the macro numbers above for your current phase. Easiest setup: let them handle lunch + dinner (the meals hardest to control), and you manage breakfast + your protein shakes yourself.</p>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLES ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Eight Truths</h2></div>
+    <p class="lede">The things that decide whether this works. Tape these to your mirror.</p>
+    <div class="principles">
+      <div class="princ"><h4><span class="n">01</span>You can't spot-reduce</h4><p>No amount of side crunches melts love handles. Direct ab work builds the muscle; the <b>overall calorie deficit</b> uncovers it. Your belly is the last place to lean out — that's biology, not failure. Stay the course.</p></div>
+      <div class="princ"><h4><span class="n">02</span>Protein is king</h4><p>In a deficit, high protein (~150g+) is what tells your body to burn fat and <b>keep muscle</b>. Miss this and you'll get smaller but still soft. Hit it every single day.</p></div>
+      <div class="princ"><h4><span class="n">03</span>Sleep is a training variable</h4><p>7–9 hours. Under-sleeping raises cortisol, which parks fat on your midsection and saps your lifts. Your rest day's job is partly to bank great sleep.</p></div>
+      <div class="princ"><h4><span class="n">04</span>The skinny-fat advantage</h4><p>As a beginner you get "newbie gains" — building muscle and losing fat at once, which trained lifters can't. This window is gold; train hard and eat enough protein to spend it well.</p></div>
+      <div class="princ"><h4><span class="n">05</span>Track, don't guess</h4><p>Weekly: front/side/back photos in the same light, waist tape at the navel, and your gym logbook. The mirror and the tape tell the truth the scale hides.</p></div>
+      <div class="princ"><h4><span class="n">06</span>Consistency &gt; intensity</h4><p>Six honest 70-min sessions a week for 26 weeks beats two heroic ones. Don't go to failure on everything early — leave reps in the tank, recover, repeat, advance.</p></div>
+      <div class="princ"><h4><span class="n">07</span>Width sells the look</h4><p>The Durden illusion is shoulders + back over a tight waist. Prioritise lateral raises, pull-ups, and rows — they create the taper that makes the waist look smaller.</p></div>
+      <div class="princ"><h4><span class="n">08</span>These are estimates</h4><p>Body-fat timelines vary by genetics, sleep, stress, and adherence. If month 1 lands at 22% not 21%, adjust calories down ~150 and keep moving. Trends matter, not single numbers.</p></div>
+    </div>
+
+    <div class="callout">
+      <h4>One health note</h4>
+      <p>You're 24, at a healthy weight, chasing a defined ~9–10% with a visible six-pack — lean, but a sound and achievable goal, not an extreme one. Keep it that way: ~9–10% is the destination, so <b>don't chase shredded single digits below ~8%</b> — that's competition territory, miserable to hold, and it photographs worse, not better. Don't crash-diet, and if you ever feel persistently exhausted, foggy, moody, or your lifts crater for weeks, that's a signal to eat a bit more, not less. Given you're optimising hard for six months, a quick check-in with a doctor or sports dietitian before you start — and bloodwork around the halfway mark — is a smart, cheap insurance policy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGBOOK ============ -->
+<style>
+  .lb-note{font-size:12.5px;color:var(--faint);background:rgba(217,138,160,.07);border:1px dashed var(--soap);
+    border-radius:8px;padding:11px 14px;margin-bottom:20px;line-height:1.5;}
+  .lb-note b{color:var(--soap);}
+  .lsub{display:flex;gap:8px;margin-bottom:22px;}
+  .lsub .b{flex:1;text-align:center;font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;
+    letter-spacing:.08em;font-size:13px;padding:12px;border:1px solid var(--line);border-radius:8px;
+    background:var(--panel);color:var(--muted);cursor:pointer;transition:.18s;}
+  .lsub .b.active{background:var(--acid);color:#10130f;border-color:var(--acid);}
+  .lpanel{display:none;}.lpanel.show{display:block;animation:fade .3s ease;}
+  .lf{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:18px;margin-bottom:18px;}
+  .lf .fld{display:flex;flex-direction:column;gap:5px;flex:1 1 110px;}
+  .lf .fld.wide{flex:1 1 100%;}
+  .lf label{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+  .lf input,.lf select,.lf textarea{background:var(--bg);border:1px solid var(--line);border-radius:7px;color:var(--ink);
+    font-family:'DM Sans';font-size:14px;padding:9px 11px;width:100%;outline:none;}
+  .lf input:focus,.lf select:focus,.lf textarea:focus{border-color:var(--acid);}
+  .lf textarea{resize:vertical;min-height:42px;}
+  .btn{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:13px;
+    background:var(--acid);color:#10130f;border:none;border-radius:8px;padding:11px 20px;cursor:pointer;transition:.18s;}
+  .btn:hover{filter:brightness(1.08);}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .btn.ghost:hover{color:var(--ink);border-color:var(--acid-dim);}
+  .btn.danger{background:transparent;color:var(--soap);border:1px solid var(--blood);}
+  .wo-inputs{display:flex;flex-direction:column;gap:8px;margin:4px 0 14px;}
+  .wo-row{display:grid;grid-template-columns:1fr 90px 80px;gap:8px;align-items:center;}
+  .wo-row .exn{font-size:13.5px;color:var(--ink);}
+  .wo-row input{background:var(--bg);border:1px solid var(--line);border-radius:6px;color:var(--ink);
+    font-family:'DM Sans';font-size:13px;padding:7px 9px;width:100%;outline:none;}
+  .wo-row input:focus{border-color:var(--acid);}
+  @media(max-width:560px){.wo-row{grid-template-columns:1fr 70px 60px;}.wo-row .exn{font-size:12.5px;}}
+  .hist{display:flex;flex-direction:column;gap:9px;}
+  .hrow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px;}
+  .hrow .top{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .hrow .dt{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--ink);}
+  .hrow .dt small{color:var(--acid);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.1em;margin-left:8px;text-transform:uppercase;}
+  .hrow .vals{font-size:13px;color:var(--muted);margin-top:6px;}
+  .hrow .vals b{color:var(--ink);}
+  .hrow .delta{color:var(--acid);font-size:12px;}
+  .hrow .delta.up{color:var(--soap);}
+  .xdel{background:none;border:none;color:var(--faint);cursor:pointer;font-size:16px;line-height:1;padding:2px 6px;}
+  .xdel:hover{color:var(--soap);}
+  .chartwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 16px 10px;margin-bottom:18px;}
+  .chartwrap .leg{display:flex;gap:18px;font-size:11.5px;color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+  .chartwrap .leg i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+  .empty{color:var(--faint);font-size:13.5px;text-align:center;padding:22px;}
+  .lb-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
+</style>
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06</span><h2>The Logbook</h2></div>
+    <p class="lede">The plan only works if you <b>chase the numbers</b>. Log your top set each session and your body measurements weekly — then aim to beat them. This logbook saves straight into your browser, so it's all still here every time you reopen the page.</p>
+
+    <div class="lb-note"><b>Read me once:</b> this saves to <b>this browser on this device</b> (works offline, persists across refreshes). It won't sync across phone↔laptop, and it can be wiped if you clear browsing data — so tap <b>Export backup</b> every few weeks to save a file. If you're viewing this inside the Claude chat window, saving may be blocked — <b>download the file and open it in Safari/Chrome</b> to use the logbook (add to Home Screen for one-tap access).</div>
+
+    <div class="lsub" id="lsub">
+      <div class="b active" data-p="measure">Body Metrics</div>
+      <div class="b" data-p="workout">Workout Log</div>
+    </div>
+
+    <!-- MEASUREMENTS -->
+    <div class="lpanel show" id="measure">
+      <div class="lf">
+        <div class="fld"><label>Date</label><input type="date" id="mDate"></div>
+        <div class="fld"><label>Weight (kg)</label><input type="number" step="0.1" id="mWeight" placeholder="68.0"></div>
+        <div class="fld"><label>Waist (cm)</label><input type="number" step="0.1" id="mWaist" placeholder="at navel"></div>
+        <div class="fld"><label>Body fat %</label><input type="number" step="0.1" id="mBf" placeholder="opt."></div>
+        <div class="fld wide"><label>Notes (energy, sleep, how the mirror looks)</label><input type="text" id="mNotes" placeholder="e.g. upper abs showing in good light"></div>
+        <div class="fld" style="flex:0 0 auto;"><button class="btn" id="mSave">Save entry</button></div>
+      </div>
+
+      <div class="chartwrap" id="chartWrap">
+        <div class="leg"><span><i style="background:var(--acid)"></i>Weight</span><span><i style="background:var(--soap)"></i>Waist</span></div>
+        <div id="chart"></div>
+      </div>
+
+      <div class="hist" id="mHist"></div>
+    </div>
+
+    <!-- WORKOUT -->
+    <div class="lpanel" id="workout">
+      <div class="lf">
+        <div class="fld"><label>Date</label><input type="date" id="wDate"></div>
+        <div class="fld"><label>Session</label>
+          <select id="wDay">
+            <option value="push">Wed · Push</option>
+            <option value="pull">Thu · Pull</option>
+            <option value="legs">Fri · Legs + Core</option>
+            <option value="condition">Sat · Conditioning</option>
+            <option value="upper">Mon · Upper</option>
+            <option value="lowerplus">Tue · Lower +</option>
+          </select>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--faint);font-family:'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Log your top set — load (kg or BW) × reps</p>
+      <div class="wo-inputs" id="woInputs"></div>
+      <div class="lf"><div class="fld wide"><label>Session notes</label><textarea id="wNotes" placeholder="felt strong, added a band to dips, etc."></textarea></div>
+        <div class="fld" style="flex:0 0 auto;"><button class="btn" id="wSave">Save session</button></div>
+      </div>
+      <div class="hist" id="wHist"></div>
+    </div>
+
+    <div class="lb-actions">
+      <button class="btn ghost" id="expBtn">⭳ Export backup</button>
+      <label class="btn ghost" style="cursor:pointer;">⭱ Import backup<input type="file" id="impFile" accept="application/json" style="display:none;"></label>
+      <button class="btn danger" id="clrBtn">Clear all data</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="rule">First rule of Project Mayhem:<br><b>you show up Wednesday.</b><br>Then you do it 26 more times.</div>
+    <p class="small">Built for a 5'8", 68 kg, ~23% start, age 24 · calisthenics-led, weights-assisted · Wed 3 Jun → late Nov 2026. Numbers are planning estimates from your stats — adjust against your real-world progress in the logbook. Not medical advice; check in with a doctor or registered sports dietitian before starting and around the midpoint.</p>
+  </div>
+</footer>
+
+<script>
+  // Day tabs
+  const dayTabs = document.querySelectorAll('#dayTabs .tab');
+  dayTabs.forEach(t=>t.addEventListener('click',()=>{
+    dayTabs.forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.day').forEach(d=>d.classList.remove('show'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.day).classList.add('show');
+  }));
+  // Diet phase toggle
+  const pts = document.querySelectorAll('#dietToggle .pt');
+  pts.forEach(p=>p.addEventListener('click',()=>{
+    pts.forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.dietphase').forEach(d=>d.classList.remove('show'));
+    p.classList.add('active');
+    document.getElementById(p.dataset.phase).classList.add('show');
+  }));
+
+  /* ---------- LOGBOOK ---------- */
+  const LKEY='pm_log_v1';
+  const DAYW={
+    push:['Push-ups','Dips','Pike push-ups','DB lateral raises','Incline DB press','Triceps'],
+    pull:['Pull-ups','Inverted rows','DB/BB rows','Face pulls','DB curls','Chin / hammer curls','Core: knee raises'],
+    legs:['Goblet/BB squats','Romanian deadlifts','Walking lunges','Nordic / leg curl','Calf raises','Weighted crunch'],
+    condition:['HIIT intervals','Ab finisher','Mobility'],
+    upper:['Wide-grip pull-ups','Dips','Planche / incline press','DB shoulder press','Lateral raises','Curls + triceps','Skill (L-sit/MU)'],
+    lowerplus:['Squat variation','Bulgarian split squats','Hip thrusts','RDL / leg curl','Calf raises','Conditioning + core']
+  };
+  const DAYLBL={push:'Push',pull:'Pull',legs:'Legs',condition:'Conditioning',upper:'Upper',lowerplus:'Lower +'};
+
+  function load(){try{return JSON.parse(localStorage.getItem(LKEY))||{m:[],w:[]};}catch(e){return{m:[],w:[]};}}
+  function save(){try{localStorage.setItem(LKEY,JSON.stringify(DATA));}catch(e){alert('Could not save. If you are viewing this inside the chat preview, download the file and open it in your browser (Safari/Chrome) so the logbook can save.');}}
+  let DATA=load();
+  const todayISO=()=>new Date().toISOString().slice(0,10);
+  const fmtDate=s=>{const d=new Date(s+'T00:00');return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});};
+
+  // sub-tabs
+  document.querySelectorAll('#lsub .b').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#lsub .b').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.lpanel').forEach(x=>x.classList.remove('show'));
+    b.classList.add('active');document.getElementById(b.dataset.p).classList.add('show');
+  }));
+
+  // ---- measurements ----
+  const mDate=document.getElementById('mDate');mDate.value=todayISO();
+  document.getElementById('mSave').addEventListener('click',()=>{
+    const w=parseFloat(document.getElementById('mWeight').value);
+    const wa=parseFloat(document.getElementById('mWaist').value);
+    if(!mDate.value||(isNaN(w)&&isNaN(wa))){alert('Add at least a weight or waist measurement.');return;}
+    DATA.m.push({date:mDate.value,weight:isNaN(w)?null:w,waist:isNaN(wa)?null:wa,
+      bf:parseFloat(document.getElementById('mBf').value)||null,notes:document.getElementById('mNotes').value.trim()});
+    save();document.getElementById('mWeight').value='';document.getElementById('mWaist').value='';
+    document.getElementById('mBf').value='';document.getElementById('mNotes').value='';renderM();
+  });
+
+  function renderM(){
+    const arr=[...DATA.m].sort((a,b)=>a.date<b.date?-1:1);
+    const hist=document.getElementById('mHist');
+    drawChart(arr);
+    if(!arr.length){hist.innerHTML='<div class="empty">No measurements yet. Log your starting numbers today — weight 68, waist at the navel.</div>';return;}
+    const start=arr[0];
+    hist.innerHTML=[...arr].reverse().map((e)=>{
+      const i=DATA.m.indexOf(e);
+      let d='';
+      if(e.weight!=null&&start.weight!=null&&e!==start){const dv=(e.weight-start.weight).toFixed(1);d+=`<span class="delta ${dv>0?'up':''}">${dv>0?'+':''}${dv}kg</span> `;}
+      if(e.waist!=null&&start.waist!=null&&e!==start){const dv=(e.waist-start.waist).toFixed(1);d+=`<span class="delta ${dv>0?'up':''}">waist ${dv>0?'+':''}${dv}cm</span>`;}
+      return `<div class="hrow"><div class="top"><div class="dt">${fmtDate(e.date)}${e===start?'<small>start</small>':''}</div>
+        <button class="xdel" onclick="delM(${i})">✕</button></div>
+        <div class="vals">${e.weight!=null?`<b>${e.weight}kg</b>`:''}${e.waist!=null?` · waist <b>${e.waist}cm</b>`:''}${e.bf?` · <b>${e.bf}%</b> bf`:''} ${d?'· '+d:''}</div>
+        ${e.notes?`<div class="vals" style="font-style:italic">"${e.notes}"</div>`:''}</div>`;
+    }).join('');
+  }
+  window.delM=i=>{DATA.m.splice(i,1);save();renderM();};
+
+  function drawChart(arr){
+    const el=document.getElementById('chart');
+    const pts=arr.filter(e=>e.weight!=null||e.waist!=null);
+    if(pts.length<2){el.innerHTML='<div class="empty">Log at least 2 entries to see your trend line.</div>';return;}
+    const W=620,H=200,pad=34;
+    const xs=pts.map((_,i)=>pad+i*(W-2*pad)/(pts.length-1));
+    function line(key,color){
+      const vals=pts.map(e=>e[key]);
+      if(vals.every(v=>v==null))return'';
+      const valid=vals.filter(v=>v!=null);
+      const mn=Math.min(...valid),mx=Math.max(...valid),rng=(mx-mn)||1;
+      let dpath='',dots='';
+      pts.forEach((e,i)=>{
+        if(e[key]==null)return;
+        const y=H-pad-((e[key]-mn)/rng)*(H-2*pad);
+        dpath+=(dpath?'L':'M')+xs[i].toFixed(1)+' '+y.toFixed(1)+' ';
+        dots+=`<circle cx="${xs[i].toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="${color}"/>`;
+      });
+      return `<path d="${dpath}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round"/>${dots}`;
+    }
+    const labels=pts.map((e,i)=>`<text x="${xs[i].toFixed(1)}" y="${H-10}" fill="#6b746d" font-size="10" font-family="Oswald" text-anchor="middle">${fmtDate(e.date)}</text>`).join('');
+    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;overflow:visible">${labels}${line('waist','#d98aa0')}${line('weight','#b9c44d')}</svg>`;
+  }
+
+  // ---- workout ----
+  const wDate=document.getElementById('wDate');wDate.value=todayISO();
+  const wDay=document.getElementById('wDay');
+  function buildInputs(){
+    document.getElementById('woInputs').innerHTML=DAYW[wDay.value].map((n,i)=>
+      `<div class="wo-row"><span class="exn">${n}</span>
+        <input id="wo_l_${i}" placeholder="kg / BW"><input id="wo_r_${i}" placeholder="reps"></div>`).join('');
+  }
+  wDay.addEventListener('change',buildInputs);buildInputs();
+  document.getElementById('wSave').addEventListener('click',()=>{
+    const ex=DAYW[wDay.value].map((n,i)=>({name:n,
+      load:document.getElementById('wo_l_'+i).value.trim(),
+      reps:document.getElementById('wo_r_'+i).value.trim()}))
+      .filter(e=>e.load||e.reps);
+    if(!ex.length){alert('Log at least one exercise.');return;}
+    DATA.w.push({date:wDate.value,day:wDay.value,ex,notes:document.getElementById('wNotes').value.trim()});
+    save();document.getElementById('wNotes').value='';buildInputs();renderW();
+  });
+  function renderW(){
+    const arr=[...DATA.w].sort((a,b)=>a.date<b.date?1:-1);
+    const hist=document.getElementById('wHist');
+    if(!arr.length){hist.innerHTML='<div class="empty">No sessions logged yet. After your first workout, punch in your top sets here.</div>';return;}
+    hist.innerHTML=arr.map(e=>{const i=DATA.w.indexOf(e);
+      return `<div class="hrow"><div class="top"><div class="dt">${fmtDate(e.date)}<small>${DAYLBL[e.day]||e.day}</small></div>
+        <button class="xdel" onclick="delW(${i})">✕</button></div>
+        <div class="vals">${e.ex.map(x=>`${x.name}: <b>${x.load||'—'}${x.reps?' × '+x.reps:''}</b>`).join(' &nbsp;·&nbsp; ')}</div>
+        ${e.notes?`<div class="vals" style="font-style:italic">"${e.notes}"</div>`:''}</div>`;
+    }).join('');
+  }
+  window.delW=i=>{DATA.w.splice(i,1);save();renderW();};
+
+  // ---- export / import / clear ----
+  document.getElementById('expBtn').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='project-mayhem-log-'+todayISO()+'.json';a.click();
+  });
+  document.getElementById('impFile').addEventListener('change',ev=>{
+    const f=ev.target.files[0];if(!f)return;const r=new FileReader();
+    r.onload=()=>{try{const d=JSON.parse(r.result);if(d.m&&d.w){DATA=d;save();renderM();renderW();alert('Backup restored.');}else alert('That file does not look like a Project Mayhem backup.');}catch(e){alert('Could not read that file.');}};
+    r.readAsText(f);
+  });
+  document.getElementById('clrBtn').addEventListener('click',()=>{
+    if(confirm('Delete ALL logged data? Export a backup first if you want to keep it. This cannot be undone.')){
+      DATA={m:[],w:[]};save();renderM();renderW();}
+  });
+
+  renderM();renderW();
+</script>
+</body>
+</html>
