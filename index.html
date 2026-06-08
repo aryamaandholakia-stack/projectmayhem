@@ -589,8 +589,8 @@ function schemeOf(wk){const p=phaseOf(wk);if((p.deload||[]).includes(wk))return 
 /* 6-day aesthetic split. prog[6]=phase variation; rotate[]=weekly rotation; isolation moves carry fixed reps */
 const DAYS=[
  {label:'Push · Chest',sub:'Upper chest · Chest · Triceps',ex:[
-   {name:'Incline barbell / DB press',sets:4,kind:'load',rest:'2 min',cue:'Upper-chest shelf — your model-maker. 30–45° bench, full stretch'},
-   {prog:['Dips (band-assisted)','Dips (full)','Dips (full)','Weighted dips','Weighted dips','Weighted dips'],sets:4,kind:'load',rest:'2 min',cue:'Lean torso forward, deep — chest + triceps'},
+   {name:'Incline barbell / DB press',sets:4,kind:'load',hold:'6–10',rest:'2 min',cue:'Upper-chest shelf — your model-maker. 30–45° bench, full stretch. Stays 6–10 in the peak weeks to hold strength and muscle through the cut'},
+   {prog:['Dips (band-assisted)','Dips (full)','Dips (full)','Weighted dips','Weighted dips','Weighted dips'],sets:4,kind:'load',hold:'8–12',rest:'2 min',cue:'Lean torso forward, deep — chest + triceps. In the peak weeks go bodyweight for higher reps or keep weighted at 8–12 — easier on the joints than heavy high-rep dips'},
    {name:'Flat DB press',sets:3,kind:'load',rest:'90s',cue:'Mid / lower chest thickness'},
    {rotate:['Cable chest fly','Pec-deck fly','Incline DB fly'],sets:3,kind:'iso',reps:'12–15',rest:'75s',cue:'Stretch at the bottom, squeeze across — chest detail & width'},
    {name:'Lateral raises',sets:3,kind:'iso',reps:'12–15',rest:'60s',cue:'Shoulder width — hit them every push day'},
@@ -600,15 +600,15 @@ const DAYS=[
  {label:'Pull · Width',sub:'Lats · Rear delts · Biceps',ex:[
    {prog:['Pull-ups (band / negatives)','Pull-ups (band-assisted)','Pull-ups (full)','Pull-ups (full)','Weighted pull-ups','Weighted pull-ups'],sets:4,kind:'amrap',reps:'AMRAP',rest:'2 min',cue:'Wide grip — the #1 lat-width builder. Add weight past 10 clean reps'},
    {name:'Wide lat pulldown',sets:3,kind:'load',rest:'90s',cue:'Chase width — drive elbows down, not back'},
-   {rotate:['Chest-supported DB row','Barbell row','T-bar row'],sets:3,kind:'load',rest:'90s',cue:'Back thickness — squeeze shoulder blades'},
+   {name:'Chest-supported row',sets:3,kind:'load',rest:'90s',cue:'Locked in as your primary row — same movement every week so you can track it and add weight. Squeeze the shoulder blades'},
    {name:'Straight-arm pulldown',sets:3,kind:'iso',reps:'12–15',rest:'60s',cue:'Pure lat isolation — feel the stretch and contraction'},
    {rotate:['Face pulls','Reverse pec-deck','Bent-over rear fly'],sets:3,kind:'iso',reps:'15–20',rest:'60s',cue:'Rear delts — 3D shoulders + posture'},
    {rotate:['Barbell curl','EZ-bar curl','Cable curl'],sets:3,kind:'iso',reps:'10–12',rest:'60s',cue:'Biceps — no swing, full squeeze'},
  ]},
  {label:'Legs + Core',sub:'Quads · Hams · Glutes · Abs',ex:[
-   {prog:['Bodyweight squats','Goblet squats','Goblet squats (heavy)','Barbell / pistol progression','Barbell back squat','Barbell back squat'],sets:4,kind:'load',rest:'2 min',cue:'Below parallel, knees track over toes'},
-   {name:'Romanian deadlift',sets:3,kind:'load',rest:'90s',cue:'Hinge, flat back — hamstrings & glutes'},
-   {rotate:['Leg press','Walking lunges','Hack squat'],sets:3,kind:'load',rest:'90s',cue:'Quad volume'},
+   {prog:['Bodyweight squats','Goblet squats','Goblet squats (heavy)','Barbell / pistol progression','Barbell back squat','Barbell back squat'],sets:4,kind:'load',hold:'8–12',rest:'2 min',cue:'Below parallel, knees track over toes. Stays 8–12 in the peak weeks — heavy keeps the muscle on while you cut'},
+   {name:'Romanian deadlift',sets:3,kind:'load',hold:'8–12',rest:'90s',cue:'Hinge, flat back — hamstrings & glutes. Held at 8–12 in the peak weeks; high-rep RDL under fatigue just stacks lower-back stress'},
+   {rotate:['Leg press','Walking lunges','Hack squat'],sets:3,setsCut:2,kind:'load',rest:'90s',cue:'Quad volume — drops to 2 sets in the cut (Phases 5–6); squats and RDLs already cover the stimulus'},
    {rotate:['Lying leg curl','Nordic curl','Seated leg curl'],sets:3,kind:'iso',reps:'10–12',rest:'75s',cue:'Hamstrings — resist the lowering'},
    {name:'Calf raises',sets:4,kind:'iso',reps:'12–20',rest:'45s',cue:'Full stretch, squeeze the top'},
    {rotate:['Cable crunch','Weighted decline crunch','Hanging leg raises'],sets:4,kind:'iso',reps:'10–15',rest:'60s',cue:'ADD LOAD — grow the six-pack bricks. Lower-ab focus'},
@@ -622,8 +622,8 @@ const DAYS=[
    {rotate:['Skull crushers','Overhead extension','Weighted bench dips'],sets:3,kind:'iso',reps:'10–15',rest:'60s',cue:'Triceps — the other 2/3 of the arm'},
  ]},
  {label:'Pull · Thickness + Arms',sub:'Back · Biceps · Rear delts',ex:[
-   {prog:['Pull-ups (band / negatives)','Pull-ups (band-assisted)','Pull-ups (full)','Pull-ups (full)','Weighted pull-ups','Weighted pull-ups'],sets:3,kind:'amrap',reps:'AMRAP',rest:'90s',cue:'Open the day with width'},
-   {rotate:['T-bar row','One-arm DB row','Pendlay row'],sets:4,kind:'load',rest:'90s',cue:'Thickness focus today — heavy and controlled'},
+   {prog:['Pull-ups (band / negatives)','Pull-ups (band-assisted)','Pull-ups (full)','Pull-ups (full)','Pull-ups (bodyweight)','Pull-ups (bodyweight)'],sets:3,kind:'amrap',reps:'AMRAP',rest:'90s',cue:'Open the day with width. In the cut this is bodyweight only — Tuesday keeps the weighted work, so your elbows and biceps get a break'},
+   {name:'Chest-supported row',sets:4,kind:'load',rest:'90s',cue:'Primary thickness movement — chest-supported lets you load hard with a stable spine. Progress it week to week'},
    {name:'Seated cable row',sets:3,kind:'load',rest:'75s',cue:'Mid-back squeeze, slight pause'},
    {rotate:['Face pulls','Reverse pec-deck'],sets:3,kind:'iso',reps:'15–20',rest:'60s',cue:'Rear delts + posture'},
    {name:'Incline DB curl + hammer curl',sets:4,kind:'iso',reps:'10–12',rest:'60s',cue:'Arms day — chase the pump, full range'},
@@ -634,6 +634,7 @@ const DAYS=[
    {name:'Lateral raise burnout',sets:3,kind:'iso',reps:'15–25',rest:'45s',cue:'One more shoulder hit — width is everything'},
    {rotate:['Hanging leg raises + cable crunch','Ab wheel + hollow holds','Captain\u2019s chair + plank'],sets:3,kind:'iso',reps:'circuit',rest:'45s',cue:'Lower-ab priority. Keep obliques LIGHT — heavy side work thickens the waist & kills the V'},
    {name:'Hip thrusts',sets:3,kind:'load',reps:'12',rest:'60s',cue:'Glutes — proportion & posture'},
+   {name:'Calf raises',sets:3,kind:'iso',reps:'12–20',rest:'45s',cue:'Second calf hit of the week — calves respond to frequency at almost no recovery cost'},
    {rotate:['Bike 30s/90s ×8–10','Incline-treadmill sprints ×8','Rower intervals 250m ×6'],sets:'',kind:'time',reps:'18–22 min',rest:'—',cue:'Moderate-hard fat-burn to close the week'},
  ]},
  {label:'Rest',sub:'Recover · sleep · meal-prep',rest:1},
@@ -655,9 +656,11 @@ function repDisp(ex,scheme){
   if(ex.kind==='amrap')return ex.reps||'AMRAP';
   if(ex.kind==='time')return ex.reps;
   if(ex.reps)return ex.reps+(ex.perLeg?' /leg':''); // isolation / fixed
+  if(ex.hold&&(scheme==='pump'||scheme==='peak'))return ex.hold+(ex.perLeg?' /leg':''); // heavy anchors held through the peak/cut block
   return SCHEME[scheme].rep+(ex.perLeg?' /leg':'');  // compound follows scheme
 }
 function exName(ex,p,wk){return ex.prog?ex.prog[p.prog]:(ex.rotate?ex.rotate[(wk-1)%ex.rotate.length]:ex.name);}
+function setsOf(ex,p){return (ex.setsCut!=null&&p.prog>=4)?ex.setsCut:ex.sets;}
 
 function renderWeek(wk){
   SELWK=wk;
@@ -676,7 +679,7 @@ function renderWeek(wk){
       const nm=exName(ex,p,wk);
       const eff=(day.cond||ex.kind==='time')?'easy':S.rpe;
       return '<tr><td class="nm c-nm">'+nm+(ex.cue?'<em>'+ex.cue+'</em>':'')+'</td>'+
-             '<td class="sr c-sr">'+ex.sets+(ex.sets!==''?'×':'')+repDisp(ex,sc)+'</td>'+
+             '<td class="sr c-sr">'+setsOf(ex,p)+(ex.sets!==''?'×':'')+repDisp(ex,sc)+'</td>'+
              '<td class="rpe c-rpe">'+eff+'</td><td class="rest c-rest">'+(ex.rest||S.rest)+'</td></tr>';
     }).join('');
     return '<div class="day"><div class="day-banner"><div class="focus"><small>'+DAYNAMES[di]+' · '+fmtD(dayDate(wk,di))+'</small>'+day.label+'</div>'+
@@ -735,8 +738,8 @@ function renderWeek(wk){
       (WEEKNOTE[wk]?'<div class="target">\u25B8 '+WEEKNOTE[wk]+'</div>':'')+'</div>'+
     (deload?'<div class="deload"><b>Deload week.</b> Cut sets ~40% and keep loads light. Planned recovery — you grow now; come back stronger.</div>':'')+
     '<p class="lede" style="margin:16px 0 0;font-size:14px;">'+p.focus+'</p>'+
-    '<div class="dailybar">EVERY DAY · <b>8–10k steps</b> (see each day\u2019s treadmill walk) · <b>3.5–4 L water</b> · <b>7–8 h sleep</b></div>'+
-    '<h3 class="block"><span class="ic">◇</span>Workout — '+S.label+' loading</h3>'+workout+
+    '<div class="dailybar">EVERY DAY · <b>8–10k steps</b> (see each day\u2019s treadmill walk) · <b>3.5–4 L water</b> · <b>7 h+ sleep</b></div>'+
+    '<h3 class="block"><span class="ic">◇</span>Workout — '+S.label+' loading</h3>'+((sc==='pump'||sc==='peak')?'<div class="deload"><b>Heavy anchors held.</b> Incline press (6–10), squat (8–12) and RDL (8–12) stay heavier than this week\u2019s pump scheme, and weighted pull-ups stay AMRAP — heavy compounds are what keep muscle on while you cut.</div>':'')+workout+
     '<h3 class="block"><span class="ic">◇</span>Food — '+d.label+'</h3>'+
     '<p class="lede" style="margin:0 0 14px;font-size:13.5px;">Your target this phase. Everything below is a grab from your <b>Sunday prep boxes</b> — no weekday cooking.</p>'+tog+macros+
     '<div class="subh"><span class="ic">1</span>Hit your protein</div>'+
